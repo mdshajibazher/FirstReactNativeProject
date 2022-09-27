@@ -14,6 +14,7 @@ function MessagesScreen(props) {
         })
         setMessages(filteredMessages);
     }
+    const [refreshing,setRefreshing] = useState(false)
     const [messages,setMessages] = useState([
         {
             id: 1,
@@ -52,6 +53,15 @@ function MessagesScreen(props) {
         }
             keyExtractor={message => message.id.toString()}
             ItemSeparatorComponent={ListItemSeparator}
+            refreshing={refreshing}
+            onRefresh={() => {
+                setMessages([        {
+                    id: 1,
+                    title: 'T1 After Refresh',
+                    description: 'D1 After Refresh',
+                    image: require('../assets/mosh.jpg')
+                }]);
+            }}
         />
        </Screen>
     );
