@@ -1,6 +1,6 @@
 import WelcomeScreens from "./app/screens/WelcomeScreens";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
-import {Text, TextInput, View} from 'react-native';
+import {Switch, Text, TextInput, View} from 'react-native';
 import AppText from "./app/components/AppText";
 import { MaterialIcons } from '@expo/vector-icons';
 import AppButton from "./app/components/AppButton";
@@ -13,13 +13,28 @@ import ListItem from "./app/components/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingScreen from "./app/screens/ListingScreen";
 import AppTextInput from "./app/components/AppTextInput";
+import AppPicker from "./app/components/AppPicker";
+import {useState} from "react";
 
+const categories = [
+    {label: "Furniture", value: 1},
+    {label: "Clothing", value: 2},
+    {label: "Cameras", value: 3},
+
+];
 
 export default function App() {
-
-  return (
+    const [category, setCategory] = useState();
+    return (
+        <>
        <Screen>
-           <AppTextInput placeholder="Username" icon="email"/>
+           <AppPicker
+               selectedItem={category}
+               onSelectItem={item => setCategory(item)}
+               items={categories}
+               icon="apps"
+               placeholder={'Pick Something'}/>
        </Screen>
+        </>
   )
 }
